@@ -1,22 +1,52 @@
-# Real-Time Object Tracker
+# YOLOv8 Object Tracking with OpenCV  
 
-## Overview
-A Python app to track objects in real-time using either:
-- Live webcam feed
-- Uploaded video file
+This project demonstrates **real-time object detection and tracking** using [Ultralytics YOLOv8](https://github.com/ultralytics/ultralytics) and **OpenCV**.  
+The system supports live tracking from a webcam or video file, and displays bounding boxes, object IDs, and confidence scores.  
 
-Built using OpenCV + Streamlit.
+---
 
-## Features
-- Select an object in the first frame
-- Track it using CSRT Tracker
-- Stream results in real-time
-- User-friendly Streamlit interface
+## 🚀 Features
+- 🎯 **Real-time Object Detection** with YOLOv8  
+- 🧾 **Object Tracking** using ByteTrack / BoT-SORT  
+- 🆔 **Persistent IDs** across frames  
+- 🔍 **Configurable Confidence Threshold & Input Size**  
+- 🖼️ **Bounding Boxes + IDs + Confidence Scores** overlay  
+- 👤 **Filter by classes** (default: person only)  
+- ⌨️ **Safe exit** by pressing **Q** (works in both OpenCV window & Windows console)  
 
-## How to Run
-1. Clone repo
-2. Install requirements: `pip install -r requirements.txt`
-3. Run app: `streamlit run app.py`
+---
 
-## Demo
-A recorded video is provided in `/demo/demo.mp4`.
+## 🛠️ Requirements
+Make sure you have the following installed:  
+
+- Python **3.8+**
+- [Ultralytics YOLOv8](https://docs.ultralytics.com)  
+- OpenCV  
+- NumPy  
+
+Install dependencies:
+```bash
+pip install ultralytics opencv-python numpy
+
+Project Structure:
+├── tracker.py          # Main script (tracking live from webcam)
+├── requirements.txt    # Dependencies (optional)
+├── README.md           # Project documentation
+
+
+You can adjust the following parameters in the script:
+
+WEIGHTS = "yolov8s.pt"       # Model weights (yolov8n.pt for faster inference)
+CONF_THRES = 0.5             # Confidence threshold
+IMG_SIZE = 640               # Input image size
+TRACKER_CFG = "bytetrack.yaml"  # or "botsort.yaml"
+FILTER_CLASSES = [0]         # 0 = person only (None for all classes)
+
+
+Usage
+1. Run live tracking from webcam
+python tracker.py
+
+2. Run tracking on a video file
+python tracker.py
+
